@@ -1,4 +1,6 @@
 import { User } from '../../domain/User.js';
 export interface UserRepoPort {
-  findByEmailOrPhone(identifier: string): Promise<User | null>;
+  findByEmailOrPhone(contact: string): Promise<User | null>;
+  create(user: Partial<User>): Promise<void>;
 }
+  
