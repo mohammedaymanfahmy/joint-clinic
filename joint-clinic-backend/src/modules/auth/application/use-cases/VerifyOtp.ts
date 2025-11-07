@@ -1,11 +1,20 @@
 import { OTPRepoPort } from '../ports/OTPRepoPort.js';
 import { verifyHash } from '../../../../shared/utils/crypto.js';
 import { security } from '../../../../config/security.js';
+import jwt from 'jsonwebtoken';
 
 export class VerifyOtp {
   constructor(private otpRepo: OTPRepoPort) { }
 
-  async exec(subjectType: 'report' | 'login', subjectRef: string, code: string) {
+  async exec(otpToken:string, code: string): Promise<{ok: Boolean, reason?: 'invalid' | 'expired' | 'locked' | 'not_found' | 'invalid_token'}> {
+    const jwtSecret = process.env.JWT_SECRET as string
+    let payload;
+    try {
+      payload = jwt.verify(otpToken, jwtSecret)
+    } catch (err) {
+      return { ok: false, reason: 'invalid_token' };
+    }
+    const { subjectType, subjectRef } = payload as any;
     const otp = await this.otpRepo.latest(subjectType, subjectRef);
     if (!otp) return { ok: false, reason: 'not_found' };
 
