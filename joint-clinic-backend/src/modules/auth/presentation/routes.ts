@@ -1,7 +1,7 @@
 // path: src/modules/auth/presentation/routes.ts
 import { Router } from 'express';
 import rateLimit from 'express-rate-limit';
-import { requestOtp, verifyOtp } from './controllers/auth.controller.js';
+import { createPartialUser, findUser, requestOtp, verifyOtp } from './controllers/auth.controller.js';
 
 export const authRoutes = Router();
 
@@ -20,4 +20,12 @@ const verifyLimiter = rateLimit({
 });
 
 authRoutes.post('/otp/request', requestLimiter, requestOtp);
+authRoutes.post('/auth/find-user', requestLimiter, findUser);
+authRoutes.post('/auth/create-partial-user', requestLimiter, createPartialUser);
+// authRoutes.post('/auth/user', requestLimiter, createFullUser);
+
 authRoutes.post('/otp/verify', verifyLimiter, verifyOtp);
+// enter his email or phone 
+// if user found, send otp
+// if user not found, ask for more info (fullName, gender, birthDate) then create partial user and send otp
+// after otp verified, if partial user, ask for more info to complete profile
