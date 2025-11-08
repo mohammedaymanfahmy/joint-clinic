@@ -7,8 +7,10 @@ export const UserRepoMongo: UserRepoPort = {
     return UserModel.findOne({ contact });
   },
 
-  async create(user: User): Promise<void> {
+  async create(user: Partial<User>): Promise<User> {
+    console.log("Creating user:", user);
     const userModel = new UserModel(user);
     await userModel.save();
+    return userModel as any as User;
   }
 }

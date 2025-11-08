@@ -9,12 +9,18 @@ import type { BlobPort } from '../modules/reports/application/infra-ports/BlobPo
 import { blobAzureAdapter } from '../infra/storage/blob.azure.adapter.js';
 import { UserRepoPort } from 'modules/auth/application/ports/UserRepoPort.js';
 import { UserRepoMongo } from 'modules/auth/infrastructure/repos/UserRepoMongo.js';
+import { MailPort } from 'infra/mail/mail.port.js';
+import { SMSPort } from 'infra/sms/sms.port.js';
+import { mailAdapter } from 'infra/mail/mail.adapter.js';
+import { smsAdapter } from 'infra/sms/sms.adapter.js';
 
 export const OTP_REPO = token<OTPRepoPort>('OTP_REPO');
 export const BOOKING_REPO = token<BookingRepoPort>('BOOKING_REPO');
 export const REPORT_REPO = token<ReportRepoPort>('REPORT_REPO');
 export const BLOB_PORT = token<BlobPort>('BLOB_PORT');
 export const USER_AUTH_REPO = token<UserRepoPort>('USER_AUTH_REPO');
+export const MAIL_REPO = token<MailPort>('MAIL_REPO');
+export const SMS_REPO = token<SMSPort>('SMS_REPO');
 
 export function bindAll() {
   register(OTP_REPO, OTPRepoMongo);
@@ -22,4 +28,6 @@ export function bindAll() {
   register(REPORT_REPO, ReportRepoMongo);
   register(BLOB_PORT, blobAzureAdapter);
   register(USER_AUTH_REPO, UserRepoMongo);
+  register(MAIL_REPO, mailAdapter);
+  register(SMS_REPO, smsAdapter);
 }

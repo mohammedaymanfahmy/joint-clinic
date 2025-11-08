@@ -8,7 +8,7 @@ const UserSchema = new Schema(
       required: true,
       default: 'Patient'
     },
-    name: { type: String, required: true },
+    fullName: { type: String, required: true },
     // check email and phone are indexed for faster lookup but without harm performance
     // email: { type: String, lowercase: true, trim: true, required: false },
     // phone: { type: String, trim: true, required: false },
@@ -17,7 +17,7 @@ const UserSchema = new Schema(
 
     // check all the required fields for patient profile
     birthdate: { type: Date, required: true },
-    gender: { type: String, enum: ['Male', 'Female'], required: true },
+    gender: { type: String, enum: ['Male', 'Female', 'male', 'female'], required: true },
     identifier: { type: String, required: false },
     nationality: { type: String, required: false },
     address: { type: String, required: false },

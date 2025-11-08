@@ -1,14 +1,13 @@
 export type Role = 'Patient' | 'Doctor' | 'Admin' | 'Staff';
-export type Gender = 'Male' | 'Female';
+export type Gender = 'Male' | 'Female' | 'male' | 'female';
 export type MaritalStatus = 'Single' | 'Married' | 'Divorced' | 'Widowed';
 export type AccountStatus = 'active' | 'inactive';
-
 export type IdentifierType = 'email' | 'phone' | 'nid' | 'iqama' | undefined;
 
 export interface User {
   _id: string;
   role: Role;
-  name: string;
+  fullName: string;
   // email?: string;
   // phone?: string;
   contact: string;

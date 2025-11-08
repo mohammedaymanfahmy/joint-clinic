@@ -18,10 +18,10 @@ const verifyLimiter = rateLimit({
     standardHeaders: true,
     legacyHeaders: false
 });
-
+// rate limit for each route?
+authRoutes.post('/find-user', requestLimiter, findUser);
 authRoutes.post('/otp/request', requestLimiter, requestOtp);
-authRoutes.post('/auth/find-user', requestLimiter, findUser);
-authRoutes.post('/auth/create-partial-user', requestLimiter, createPartialUser);
+authRoutes.post('/create-partial-user', requestLimiter, createPartialUser);
 // authRoutes.post('/auth/user', requestLimiter, createFullUser);
 
 authRoutes.post('/otp/verify', verifyLimiter, verifyOtp);
