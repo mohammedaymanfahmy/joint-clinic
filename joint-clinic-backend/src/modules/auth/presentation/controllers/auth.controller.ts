@@ -4,12 +4,9 @@ import { RequestOtp } from '../../application/use-cases/RequestOtp.js';
 import { VerifyOtp } from '../../application/use-cases/VerifyOtp.js';
 import { FindUser } from 'modules/auth/application/use-cases/FindUser.js';
 import { CreatePartialUser } from 'modules/auth/application/use-cases/CreatePartialUser.js';
-import { resolve, token } from '../../../../app/container.js';
-import { OTPRepoPort } from '../../application/ports/OTPRepoPort.js';
-import { UserRepoPort } from 'modules/auth/application/ports/UserRepoPort.js';
-
-const OTP_REPO = token<OTPRepoPort>('OTP_REPO');
-const USER_AUTH_REPO = token<UserRepoPort>('USER_AUTH_REPO');
+import { resolve } from '../../../../app/container.js';
+import { OTP_REPO } from 'app/container.bindings.js';
+import { USER_AUTH_REPO } from 'app/container.bindings.js';
 
 export async function requestOtp(req: Request, res: Response) {
   const { subjectRef, subjectType } = RequestOtpSchema.parse(req.body);
