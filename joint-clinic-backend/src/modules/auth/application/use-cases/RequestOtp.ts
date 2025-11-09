@@ -20,8 +20,10 @@ export class RequestOtp {
     try {
       if(contactType === 'phone') {
         await this.smsRepo.send(contact, code)
-      } else if (contactType === 'email') {
+      } else if (contactType === 'email' && subjectType === 'login') {
         await this.mailRepo.send(contact, '', {otp: code})
+      } else if (contactType === 'email' && subjectType === 'report') {
+        await this.mailRepo.send(contact, subjectRef, {otp: code})
       } else {
         throw new Error('Invalid contact Type')
       }
