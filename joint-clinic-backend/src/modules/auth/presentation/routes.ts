@@ -1,7 +1,7 @@
 // path: src/modules/auth/presentation/routes.ts
 import { Router } from 'express';
 import rateLimit from 'express-rate-limit';
-import { createPartialUser, findUser, requestOtp, verifyOtp } from './controllers/auth.controller.js';
+import { createFullUser, createPartialUser, findUser, requestOtp, verifyOtp } from './controllers/auth.controller.js';
 
 export const authRoutes = Router();
 
@@ -18,14 +18,13 @@ const verifyLimiter = rateLimit({
     standardHeaders: true,
     legacyHeaders: false
 });
-// rate limit for each route?
-authRoutes.post('/find-user', requestLimiter, findUser);
-authRoutes.post('/otp/request', requestLimiter, requestOtp);
-authRoutes.post('/create-partial-user', requestLimiter, createPartialUser);
-// authRoutes.post('/auth/user', requestLimiter, createFullUser);
 
+// generic rate limiter - throttle requests to 5 per 15 minutes
+// TODO: implement per-route rate limiting
+
+// rate limit for each route?
+authRoutes.get('/users/find', requestLimiter, findUser);
+authRoutes.post('/users/create-partial', requestLimiter, createPartialUser);
+authRoutes.post('/users/create-full', requestLimiter, createFullUser);
+authRoutes.get('/otp/request', requestLimiter, requestOtp);
 authRoutes.post('/otp/verify', verifyLimiter, verifyOtp);
-// enter his email or phone 
-// if user found, send otp
-// if user not found, ask for more info (fullName, gender, birthDate) then create partial user and send otp
-// after otp verified, if partial user, ask for more info to complete profile
