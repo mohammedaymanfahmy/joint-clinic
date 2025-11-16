@@ -1,12 +1,13 @@
 import Button from '@/components/atoms/button'
-import React from 'react'
+import FeatureCard from '@/components/molecules/featureCard'
+import React from 'react';
 
-const page = () => {
+const LandingPage: React.FC = () => {
   return (
-    <>
-     <Button text="Confirm" variant="primary"/>
-    </>
-  )
-}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+      <main className='m-[20px] radius-[16px] '></main>
+    </div>
+  );
+};
 
-export default page
+export default LandingPage;

@@ -33,7 +33,7 @@ const Button: React.FC<ButtonProps> = ({ text, variant }) => {
 
   return (
     <div
-      className={`${ibm.className} font-bold w-[248px] h-[51px] rounded-[48px] 
+      className={`${ibm.className} m-[30px] font-bold w-[248px] h-[51px] rounded-[48px] 
       text-center text-[24px] border-2 py-[9px] px-[42px] cursor-pointer transition
       leading-[115%] ${variants[variant]}`}
     >
