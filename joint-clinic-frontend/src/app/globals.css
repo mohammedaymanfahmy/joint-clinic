@@ -1,24 +1,19 @@
 @import "tailwindcss";
 
-:root {
-
-}
-
-@theme inline {
-}
-
-@theme {
-    --breakpoint-xs: 30rem;
-    --breakpoint-2xl: 100rem;
-    --breakpoint-3xl: 120rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out;
 }
+
+
+

@@ -1,7 +1,14 @@
-export default function Home() {
+import Button from '@/components/atoms/button'
+import React from 'react'
+
+const Home = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-[#ff5] underline">Welcome to Joint Clinic</h1>
-    </div>
-  );
+    <>
+      <Button text="Hiiii" variant="primary" />
+      <Button text="Confirm" variant="primary" />
+      <Button text="Confirm" variant="primary" />
+    </>
+  )
 }
+
+export default Home
