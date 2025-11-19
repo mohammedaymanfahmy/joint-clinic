@@ -9,6 +9,7 @@ import HorizontalScroll from "@/components/Horizontal/Horizontal";
 import YourSafety from "@/components/YourSafety/YourSafety";
 import HowWorks from "@/components/howWorks/howWorks";
 import Pagination from "@/pages/pagination";
+import Book from "@/components/booking/book";
 // import Pagination from "@/pages/pagination";
 
 const ibmPlex = IBM_Plex_Sans({
@@ -43,8 +44,11 @@ export default function Home() {
         <YourSafety />
       </section>
       {/* {<Pagination total={5} />} */}
-      <section className="h-screen flex items-center bg-[#fff] justify-center">
+      <section className="h-screen flex items-center bg-[#ebf6f8] justify-center">
         <HowWorks />
+      </section>
+      <section className="h-screen flex items-center bg-[#edf7f9] justify-center">
+        <Book />
       </section>
     </div>
   );
