@@ -61,7 +61,7 @@ export default function HowWorks() {
           snapTo: 1 / steps,
           duration: { min: 0.15, max: 0.6 },
           ease: "power2.inOut",
-        } : false,
+        } : undefined,
         onUpdate: (self) => {
           // map progress to index 0..steps
           const idx = steps === 0 ? 0 : Math.round(self.progress * steps);

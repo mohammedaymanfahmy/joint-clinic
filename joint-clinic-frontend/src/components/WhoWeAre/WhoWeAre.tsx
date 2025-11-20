@@ -89,59 +89,74 @@ export default function WhoWeAre() {
 
   // animate on step change — each step has its own short timeline
   useEffect(() => {
-    // quick guard
-    const c1 = circle1Ref.current;
-    const c2 = circle2Ref.current;
-    const w = whoRef.current;
-    const r = redRef.current;
-    const t = teamRef.current;
+  const c1 = circle1Ref.current;
+  const c2 = circle2Ref.current;
+  const w = whoRef.current;
+  const r = redRef.current;
+  const t = teamRef.current;
 
-    if (!c1 || !c2 || !w || !r || !t) {
-      return; // ✔ TS accepts this (void return)
-    }
+  // Always declare tl first so cleanup is always valid
+  const tl = gsap.timeline({ defaults: { duration: 0.7, ease: "none" } });
 
-    // reset baseline for all (keeps layout stable)
-    gsap.set([c1, c2, w, r, t], { clearProps: "all" });
-    gsap.set([c1, c2, w, r, t], { opacity: 0, y: 0, scale: 1 });
+  // Define cleanup here — TypeScript now knows this effect returns () => void
+  const cleanup = () => {
+    tl.kill();
+  };
 
-    const tl = gsap.timeline({ defaults: { duration: 0.7, ease: "none" } });
+  // If refs are missing, return cleanup (not "return;")
+  if (!c1 || !c2 || !w || !r || !t) {
+    return cleanup; // ✔ valid / TS safe
+  }
 
-    if (step === 0) {
-      tl.to(c1, { opacity: 1, scale: 1, y: 0 });
-    }
+  // Reset baseline
+  gsap.set([c1, c2, w, r, t], { clearProps: "all" });
+  gsap.set([c1, c2, w, r, t], { opacity: 0, y: 0, scale: 1 });
 
-    if (step === 1) {
-      tl.to(c1, { opacity: 1, scale: 1, y: -50 }, 0);
-      tl.to(w, { opacity: 1, y: 0 }, "<0.15");
-    }
+  // STEP 0
+  if (step === 0) {
+    tl.to(c1, { opacity: 1, scale: 1, y: 0 });
+  }
 
-    if (step === 2) {
-      tl.to(w, { opacity: 0, y: 20 }, 0);
-      tl.to(c1, { opacity: 0, scale: 1, y: -50 }, 0.05);
-      tl.fromTo(
-        c2,
-        { opacity: 0, scale: 1, y: -200 },
-        { opacity: 1, scale: 1, y: -200 },
-        "<0.05"
-      );
-    }
+  // STEP 1
+  if (step === 1) {
+    tl.to(c1, { opacity: 1, scale: 1, y: -50 }, 0);
+    tl.to(w, { opacity: 1, y: 0 }, "<0.15");
+  }
 
-    if (step === 3) {
-      tl.set(c2, { opacity: 1, scale: 1, y: -200 }, 0);
-      tl.fromTo(r, { opacity: 0, y: 200 }, { opacity: 1, y: -180 }, "<0.05");
-    }
+  // STEP 2
+  if (step === 2) {
+    tl.to(w, { opacity: 0, y: 20 }, 0);
+    tl.to(c1, { opacity: 0, scale: 1, y: -50 }, 0.05);
+    tl.fromTo(
+      c2,
+      { opacity: 0, scale: 1, y: -200 },
+      { opacity: 1, scale: 1, y: -200 },
+      "<0.05"
+    );
+  }
 
-    if (step === 4) {
-      tl.set(c2, { opacity: 1, y: -200 }, 0);
-      tl.set(r, { opacity: 1, y: -180 }, 0);
-      tl.fromTo(t, { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, "<0.15");
-    }
+  // STEP 3
+  if (step === 3) {
+    tl.set(c2, { opacity: 1, scale: 1, y: -200 }, 0);
+    tl.fromTo(
+      r,
+      { opacity: 0, y: 200 },
+      { opacity: 1, y: -180 },
+      "<0.05"
+    );
+  }
 
-    // ✔ CLEANUP FUNCTION (returns void)
-    return () => {
-      tl.kill();
-    };
-  }, [step]);
+  // STEP 4
+  if (step === 4) {
+    tl.set(c2, { opacity: 1, y: -200 }, 0);
+    tl.set(r, { opacity: 1, y: -180 }, 0);
+    tl.fromTo(t, { opacity: 0, y: 40 }, { opacity: 1, y: 0 }, "<0.15");
+  }
+
+  return cleanup; // always valid
+
+}, [step]);
+
 
   return (
     <>
