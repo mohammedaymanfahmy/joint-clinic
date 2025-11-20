@@ -1,16 +1,11 @@
-"use client";
 import { IBM_Plex_Sans } from "next/font/google";
-import FeatureCard from "@/components/molecules/featureCard";
 import WhoWeAre from "@/components/WhoWeAre/WhoWeAre";
-import MeetOurTeam from "@/components/MeetOurTeam/MeetOurTeam";
 import Hero from "@/components/Hero/Hero";
 import ChooseUs from "@/components/ChooseUs/ChooseUs";
 import HorizontalScroll from "@/components/Horizontal/Horizontal";
 import YourSafety from "@/components/YourSafety/YourSafety";
 import HowWorks from "@/components/howWorks/howWorks";
-import Pagination from "@/pages/pagination";
-import Book from "@/components/booking/book";
-// import Pagination from "@/pages/pagination";
+import WhatOurPatientsSay from "@/components/WhatOurPatientsSay/WhatOurPatientsSay";
 
 const ibmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -24,12 +19,8 @@ export default function Home() {
         <Hero font={ibmPlex} />
       </div>
 
-      <section className="who_we_are flex justify-center items-center h-screen text-[#fff] flex-col">
+      <section className=" flex justify-center items-center text-[9fd5e2] flex-col">
         <WhoWeAre />
-      </section>
-
-      <section className="team_section bg-[#9fd5e2] h-screen flex flex-col justify-center items-center gap-8">
-        <MeetOurTeam />
       </section>
 
       <section className="chooseUs h-screen flex flex-col justify-center items-center md:mt-0 gap-8">
@@ -44,11 +35,14 @@ export default function Home() {
         <YourSafety />
       </section>
       {/* {<Pagination total={5} />} */}
-      <section className="h-screen flex items-center bg-[#ebf6f8] justify-center">
+      <section className=" pb-10 flex items-center bg-[#ebf6f8] justify-center">
         <HowWorks />
       </section>
-      <section className="h-screen flex items-center bg-[#edf7f9] justify-center">
+      {/* <section className="h-screen flex items-center bg-[#edf7f9] justify-center">
         <Book />
+      </section> */}
+      <section>
+        <WhatOurPatientsSay />
       </section>
     </div>
   );
