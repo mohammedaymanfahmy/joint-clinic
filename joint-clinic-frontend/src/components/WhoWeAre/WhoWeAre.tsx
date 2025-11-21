@@ -9,6 +9,7 @@ import Circle2Circles from "@/components/icons/Circle2Circles";
 import RedLine from "@/components/icons/RedLine";
 import Profile from "@/components/icons/Profile";
 import FeatureCard from "../molecules/featureCard";
+import { usePinSection } from "./gsap/usePinSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,29 +21,33 @@ export default function WhoWeAre() {
   const redRef = useRef<HTMLDivElement | null>(null);
   const progressRedRef = useRef<HTMLDivElement | null>(null);
   const teamRef = useRef<HTMLDivElement | null>(null);
-
+  usePinSection(sectionRef);
   const [step, setStep] = useState(0);
 
   const memberinfo = [
-    { name: "Bryan", major: "BranchChiropractor Aqiq Branch", fill: "#d5ece3" },
+    { name: "Bryan", major: "BranchChiropractor", branch:"Aqiq Branch", fill: "#d5ece3" },
     {
       name: "Saad Al Omar",
-      major: "Chiropractor Aqiq Branch",
+      major: "Chiropractor",
+      branch:"Aqiq Branch",
       fill: "#167c4f",
     },
     {
       name: "Abdallah El Mahya",
-      major: "Physiotherapy Specialist Aqiq Branch",
+      major: "Physiotherapy Specialist",
+      branch:"Aqiq Branch",
       fill: "#112a4d",
     },
     {
       name: "Mohammed Alzahrani",
-      major: "Physiotherapy Specialist Aqiq Branch",
+      major: "Physiotherapy Specialist",
+      branch:"Aqiq Branch",
       fill: "#ee3124",
     },
     {
       name: "Aly El Sennedy",
-      major: "Physiotherapy Specialist Aqiq Branch",
+      major: "Physiotherapy Specialist",
+      branch:"Aqiq Branch",
       fill: "#fdb515",
     },
   ];
@@ -64,18 +69,18 @@ export default function WhoWeAre() {
             desc: "Book physiotherapy sessions, access your medical reports, and follow your personalized exercise plan – all in one secure platform."
         }
     ];
-  useEffect(() => {
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: "+=350%",
-      pin: true,
-      scrub: false,
-      pinSpacing: true,
-    });
+  // useEffect(() => {
+  //   ScrollTrigger.create({
+  //     trigger: sectionRef.current,
+  //     start: "top top",
+  //     end: "+=350%",
+  //     pin: true,
+  //     scrub: false,
+  //     pinSpacing: true,
+  //   });
 
-    return () => ScrollTrigger.getAll().forEach((s) => s.kill());
-  }, []);
+  //   return () => ScrollTrigger.getAll().forEach((s) => s.kill());
+  // }, []);
 
   // ░░░░░░░░░░░░░░░░░░░░░
   // 2) OBSERVER → STEP   |
@@ -85,7 +90,7 @@ export default function WhoWeAre() {
 
   const next = () => {
     if (locked) return;
-    setStep((s) => Math.min(s + 1, 5));
+    setStep((s) => Math.min(s + 1, 4));
     locked = true;
     setTimeout(() => (locked = false), 600);
   };
@@ -129,6 +134,7 @@ export default function WhoWeAre() {
   const w = whoRef.current;
   const r = redRef.current;
   const t = teamRef.current;
+  const pR = progressRedRef.current;
 
   // Always declare tl first so cleanup is always valid
   const tl = gsap.timeline({ defaults: { duration: 0.7, ease: "none" } });
@@ -190,10 +196,11 @@ export default function WhoWeAre() {
       tl.set(r, { opacity: 1, y: -180 }, 0);
       tl.to(t, { opacity: 0, y: 40 }, 0);
       tl.to(c2, { opacity: 1, y: -500 }, 0);
-      tl.to(r, { opacity: 1, y: -380, scaleY: 12 }, 0);
+      tl.to(r, { opacity: 1, y: -8, scaleY: 3.2 }, 0);
     }
     if (step === 5) {
-      tl.set(r, { opacity: 1, y: -380, scaleY: 12 }, 0);
+      tl.set(r, { opacity: 1, y: -8, scaleY: 3.2 }, 0);
+      tl.set(pR, { opacity: 1, y:0, x:-100, scaleY: 1, rotate:"90deg" }, 0);
     }
 
   return cleanup; // always valid
@@ -253,18 +260,19 @@ export default function WhoWeAre() {
             {/* Team (positioned visually below; will fade in on final step) */}
             <div ref={teamRef} className="absolute left-1/2 -translate-x-1/2 text-center" style={{ top: "62%" }}>
               <h1 className="text-[36px] md:text-[56px] font-bold mb-6">Meet Our Team</h1>
-              <div className="grid w-max grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              <div className="grid w-max grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 md:gap-6">
                 {memberinfo.map((m, i) => (
                   <div key={i} className="flex flex-col items-center">
-                    <Profile fill={m.fill} className="w-[56px] mb-2" />
-                    <h4 className="font-bold text-base">{m.name}</h4>
-                    <p className="text-sm w-[140px] text-center">{m.major}</p>
+                    <Profile fill={m.fill} className="w-[30px] md:w-[56px] mb-2" />
+                    <h4 className="font-bold text-base text-xs">{m.name}</h4>
+                    <p className="text-sm w-[140px] text-center text-[8px]">{m.major}</p>
+                    <p className="text-sm w-[140px] text-center text-[8px]">{m.branch}</p>
                   </div>
                 ))}
               </div>
             </div>
             <Activity mode={step >=4? "visible":"hidden"}>
-              <div ref={progressRedRef} style={{ width: 200, height: 40, rotate:"90deg" }} className="absolute lg:bottom-8 lg:-left-115 z-50" >
+              <div ref={progressRedRef} style={{ width: 200, height: 40, rotate:"90deg" }} className="absolute lg:bottom-8 lg:-left-115 -z-50 hidden md:block" >
               <RedLine className="w-full h-full" />
             </div>
             <div className="min-w-screen text-center flex flex-col items-center justify-center mt-40 gap-10">
