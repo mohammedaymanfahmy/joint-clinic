@@ -25,10 +25,26 @@ export default function WhoWeAre() {
 
   const memberinfo = [
     { name: "Bryan", major: "BranchChiropractor Aqiq Branch", fill: "#d5ece3" },
-    { name: "Saad Al Omar", major: "Chiropractor Aqiq Branch", fill: "#167c4f" },
-    { name: "Abdallah El Mahya", major: "Physiotherapy Specialist Aqiq Branch", fill: "#112a4d" },
-    { name: "Mohammed Alzahrani", major: "Physiotherapy Specialist Aqiq Branch", fill: "#ee3124" },
-    { name: "Aly El Sennedy", major: "Physiotherapy Specialist Aqiq Branch", fill: "#fdb515" },
+    {
+      name: "Saad Al Omar",
+      major: "Chiropractor Aqiq Branch",
+      fill: "#167c4f",
+    },
+    {
+      name: "Abdallah El Mahya",
+      major: "Physiotherapy Specialist Aqiq Branch",
+      fill: "#112a4d",
+    },
+    {
+      name: "Mohammed Alzahrani",
+      major: "Physiotherapy Specialist Aqiq Branch",
+      fill: "#ee3124",
+    },
+    {
+      name: "Aly El Sennedy",
+      major: "Physiotherapy Specialist Aqiq Branch",
+      fill: "#fdb515",
+    },
   ];
   const cards = [
         {
@@ -108,29 +124,39 @@ export default function WhoWeAre() {
 
   // animate on step change — each step has its own short timeline
   useEffect(() => {
-    // quick guard
-    const c1 = circle1Ref.current;
-    const c2 = circle2Ref.current;
-    const w = whoRef.current;
-    const r = redRef.current;
-    const t = teamRef.current;
-    if (!c1 || !c2 || !w || !r || !t) return;
+  const c1 = circle1Ref.current;
+  const c2 = circle2Ref.current;
+  const w = whoRef.current;
+  const r = redRef.current;
+  const t = teamRef.current;
 
-    // reset baseline for all (keeps layout stable)
-    gsap.set([c1, c2, w, r, t], { clearProps: "all" }); // clear previous transforms first
-    gsap.set([c1, c2, w, r, t], { opacity: 0, y: 0, scale: 1 });
+  // Always declare tl first so cleanup is always valid
+  const tl = gsap.timeline({ defaults: { duration: 0.7, ease: "none" } });
 
-    const tl = gsap.timeline({ defaults: { duration: 0.7, ease: "none" } });
+  // Define cleanup here — TypeScript now knows this effect returns () => void
+  const cleanup = () => {
+    tl.kill();
+  };
 
-    if (step === 0) {
-      tl.to(c1, { opacity: 1, scale: 1, y: 0 });
-    }
+  // If refs are missing, return cleanup (not "return;")
+  if (!c1 || !c2 || !w || !r || !t) {
+    return cleanup; // ✔ valid / TS safe
+  }
 
-    if (step === 1) {
-      // circle moves down (or up depending on visual; here moves down to ~30vh)
-      tl.to(c1, { opacity: 1, scale: 1, y: -50 }, 0);
-      tl.to(w, { opacity: 1, y: 0 }, "<0.15");
-    }
+  // Reset baseline
+  gsap.set([c1, c2, w, r, t], { clearProps: "all" });
+  gsap.set([c1, c2, w, r, t], { opacity: 0, y: 0, scale: 1 });
+
+  // STEP 0
+  if (step === 0) {
+    tl.to(c1, { opacity: 1, scale: 1, y: 0 });
+  }
+
+  // STEP 1
+  if (step === 1) {
+    tl.to(c1, { opacity: 1, scale: 1, y: -50 }, 0);
+    tl.to(w, { opacity: 1, y: 0 }, "<0.15");
+  }
 
     if (step === 2) {
       // hide who & circle1, crossfade into circle2 from same position
@@ -170,8 +196,10 @@ export default function WhoWeAre() {
       tl.set(r, { opacity: 1, y: -380, scaleY: 12 }, 0);
     }
 
-    return () => tl.kill();
-  }, [step]);
+  return cleanup; // always valid
+
+}, [step]);
+
 
   return (
     <>
@@ -179,27 +207,45 @@ export default function WhoWeAre() {
         {/* stage: absolutely centered container — keeps DOM stable */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative w-full max-w-3xl flex flex-col items-center">
-
             {/* Circle1: initial */}
-            <div ref={circle1Ref} style={{ width: 230, height: 120 }} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div
+              ref={circle1Ref}
+              style={{ width: 230, height: 120 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            >
               <Circle className="w-full h-full" />
             </div>
 
             {/* Who we are (centered) */}
-            <div ref={whoRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 text-center max-w-[680px]" style={{ transform: "translateY(-10px)" }}>
-              <h2 className="text-[40px] md:text-[56px] font-bold">Who We Are</h2>
+            <div
+              ref={whoRef}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 text-center max-w-[680px]"
+              style={{ transform: "translateY(-10px)" }}
+            >
+              <h2 className="text-[40px] md:text-[56px] font-bold">
+                Who We Are
+              </h2>
               <p className="mt-4 text-[16px] md:text-[18px]">
-                At Joint Clinic, we believe recovery should be simple, secure, and effective.
+                At Joint Clinic, we believe recovery should be simple, secure,
+                and effective.
               </p>
             </div>
 
             {/* Circle2 (morph target / crossfade) */}
-            <div ref={circle2Ref} style={{ width: 230, height: 120 }} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div
+              ref={circle2Ref}
+              style={{ width: 230, height: 120 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            >
               <Circle2Circles className="w-full h-full" />
             </div>
 
             {/* Red line (will animate from off-screen into bottom of circle2) */}
-            <div ref={redRef} style={{ width: 200, height: 40 }} className="absolute left-1/2 -translate-x-1/2" >
+            <div
+              ref={redRef}
+              style={{ width: 200, height: 40 }}
+              className="absolute left-1/2 -translate-x-1/2"
+            >
               {/* position Y is animated via GSAP; initial placement below */}
               <RedLine className="w-full h-full" />
             </div>
@@ -229,12 +275,17 @@ export default function WhoWeAre() {
                 
               }}>
                   {cards.map((card, index) => {
-                      return <FeatureCard key={index} title={card.title} description={card.desc} />
+                    return (
+                      <FeatureCard
+                        key={index}
+                        title={card.title}
+                        description={card.desc}
+                      />
+                    );
                   })}
+                </div>
               </div>
-            </div>
             </Activity>
-            
           </div>
         </div>
       </section>

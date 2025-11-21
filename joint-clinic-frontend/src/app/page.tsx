@@ -9,6 +9,7 @@ import HowWorks from "@/components/howWorks/howWorks";
 import WhatOurPatientsSay from "@/components/WhatOurPatientsSay/WhatOurPatientsSay";
 import Footer from "@/components/footer/footer";
 import Book from "@/components/booking/book";
+import WhoWeAre from "@/components/WhoWeAre/WhoWeAre";
 
 const ibmPlex = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -26,29 +27,26 @@ export default function Home() {
         <WhoWeAre />
       </section>
 
-      {/* <section className="chooseUs h-screen flex flex-col justify-center items-center md:mt-0 gap-8">
+      <section className="chooseUs h-screen flex flex-col justify-center items-center md:mt-0 gap-8">
         <ChooseUs />
-      </section> */}
+      </section>
 
       <section className="features_section bg-[#0d7b93] overflow-hidden py-10">
         <HorizontalScroll />
       </section>
-
-      <section className="h-screen flex items-center justify-center">
+\      <section className="h-screen flex items-center justify-center">
         <YourSafety />
-      </section>
+      </section> 
       <section className=" pb-10 flex items-center bg-[#ebf6f8] justify-center">
         <HowWorks />
       </section>
-        {/* <section className="h-screen flex items-center bg-[#edf7f9] justify-center">
+      <section className="h-screen flex items-center bg-[#edf7f9] justify-center">
         <Book />
-      </section> */}
-      <section>
-        <WhatOurPatientsSay />
       </section>
+      <WhatOurPatientsSay />
       <section className="min-h-screen bg-[#edf7f9] flex items-end justify-center overflow-x-hidden">
         <Footer />
-      </section>
+      </section> 
     </div>
   );
 }
