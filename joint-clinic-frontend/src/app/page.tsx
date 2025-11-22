@@ -27,10 +27,6 @@ export default function Home() {
         <WhoWeAre />
       </section>
       
-      <section className="chooseUs h-screen flex flex-col justify-center items-center md:mt-0 gap-8">
-        <ChooseUs />
-      </section>
-      
       <section className="features_section bg-[#0d7b93] overflow-hidden py-10">
         <HorizontalScroll />
       </section> 
