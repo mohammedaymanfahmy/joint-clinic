@@ -1,6 +1,7 @@
 "use client";
-import React, { Activity, useEffect, useRef, useState } from "react";
+import { Activity, useRef, useState } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Observer } from "gsap/Observer";
 
@@ -85,7 +86,48 @@ export default function WhoWeAre() {
   // ░░░░░░░░░░░░░░░░░░░░░
   // 2) OBSERVER → STEP   |
   // ░░░░░░░░░░░░░░░░░░░░░
-  useEffect(() => {
+//   useEffect(() => {
+//   let locked = false;
+
+//   const next = () => {
+//     if (locked) return;
+//     setStep((s) => Math.min(s + 1, 4));
+//     locked = true;
+//     setTimeout(() => (locked = false), 600);
+//   };
+
+//   const prev = () => {
+//     if (locked) return;
+//     setStep((s) => Math.max(s - 1, 0));
+//     locked = true;
+//     setTimeout(() => (locked = false), 600);
+//   };
+
+//   const observer = Observer.create({
+//     target: sectionRef.current,        // 👈 only observe your pinned section
+//     type: "wheel,touch,scroll,keydown",
+//     wheelSpeed: 1,
+//     preventDefault: false,             // 👈 FIX: allow natural scrolling
+//     tolerance: 15,                     // 👈 makes swipes smooth
+//     onDown: () => {
+//       const touch = Observer.isTouch;
+//       if (touch) prev();   // 👈 TOUCH SWIPE DOWN = previous
+//       else next();                // 👈 TRACKPAD SCROLL DOWN = next
+//     },
+
+//     onUp: () => {
+//       const touch = Observer.isTouch;
+//       if (touch) next();   // 👈 TOUCH SWIPE UP = next
+//       else prev();                // 👈 TRACKPAD SCROLL UP = previous
+//     },                       // scroll up → prev
+//     onRight: next,                     // swipe right → next
+//     onLeft: prev,                      // swipe left → prev
+//   });
+
+//   return () => observer.kill();
+// }, []);
+
+useGSAP(() => {
   let locked = false;
 
   const next = () => {
@@ -102,7 +144,7 @@ export default function WhoWeAre() {
     setTimeout(() => (locked = false), 600);
   };
 
-  const observer = Observer.create({
+  Observer.create({
     target: sectionRef.current,        // 👈 only observe your pinned section
     type: "wheel,touch,scroll,keydown",
     wheelSpeed: 1,
@@ -122,13 +164,11 @@ export default function WhoWeAre() {
     onRight: next,                     // swipe right → next
     onLeft: prev,                      // swipe left → prev
   });
-
-  return () => observer.kill();
-}, []);
+})
 
 
   // animate on step change — each step has its own short timeline
-  useEffect(() => {
+  useGSAP(() => {
   const c1 = circle1Ref.current;
   const c2 = circle2Ref.current;
   const w = whoRef.current;
@@ -140,14 +180,14 @@ export default function WhoWeAre() {
   const tl = gsap.timeline({ defaults: { duration: 0.7, ease: "none" } });
 
   // Define cleanup here — TypeScript now knows this effect returns () => void
-  const cleanup = () => {
-    tl.kill();
-  };
+  // const cleanup = () => {
+  //   tl.kill();
+  // };
 
   // If refs are missing, return cleanup (not "return;")
-  if (!c1 || !c2 || !w || !r || !t) {
-    return cleanup; // ✔ valid / TS safe
-  }
+  // if (!c1 || !c2 || !w || !r || !t) {
+  //   return cleanup; // ✔ valid / TS safe
+  // }
 
   // Reset baseline
   gsap.set([c1, c2, w, r, t], { clearProps: "all" });
@@ -203,14 +243,14 @@ export default function WhoWeAre() {
       tl.set(pR, { opacity: 1, y:0, x:-100, scaleY: 1, rotate:"90deg" }, 0);
     }
 
-  return cleanup; // always valid
+  // return cleanup; // always valid
 
-}, [step]);
+}, [{scope:sectionRef,dependencies:[step]}]);
 
 
   return (
     <>
-      <section ref={sectionRef} className="relative w-full min-h-screen">
+      <section ref={sectionRef} className="relative w-full min-h-screen p-6">
         {/* stage: absolutely centered container — keeps DOM stable */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative w-full max-w-3xl flex flex-col items-center">

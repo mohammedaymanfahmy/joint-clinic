@@ -42,7 +42,7 @@ export default function HowWorks() {
       for (let i = 0; i < steps; i++) {
         tl.current!.to(circleRef.current, {
           rotate: "+=90",
-          duration: 0.6,
+          duration: 1,
           ease: "power2.inOut",
         });
       }
@@ -50,8 +50,8 @@ export default function HowWorks() {
       ScrollTrigger.create({
         trigger: wrapperRef.current,
         start: "top top",
-        end: `+=${steps * 80}vh`, // much safer, prevents overflowing
-        scrub: 0.5,
+        end: `+=350%`,
+        scrub: true,
         pin: true,
         pinSpacing: true,
         animation: tl.current,
@@ -59,7 +59,7 @@ export default function HowWorks() {
           steps > 0
             ? {
                 snapTo: 1 / steps,
-                duration: { min: 0.2, max: 0.6 },
+                duration: { min: 0.6, max: 1 },
                 ease: "power2.inOut",
               }
             : undefined,
