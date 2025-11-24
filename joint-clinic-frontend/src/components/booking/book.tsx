@@ -8,7 +8,6 @@ import Calendar from "../molecules/calender";
 const Book = () => {
   const [step, setStep] = useState(1);
   const totalSteps = 3;
-
   const next = () => step < totalSteps && setStep(step + 1);
   const back = () => step > 1 && setStep(step - 1);
 

@@ -1,0 +1,60 @@
+#circle{    
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+    
+.indicator {
+  position: relative;
+  width: 400px; /* عرض الشكل بالكامل */
+  height: 120px;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* الخط الأزرق يمين ويسار */
+.indicator .line {
+  width: 140px;
+  height: 3px;
+  background: #0d294d;
+}
+
+/* الدائرة */
+.indicator .circle {
+  width: 45px;
+  height: 45px;
+  border: 3px solid #0d294d;
+  background: transparent;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+/* النقطتين الطرفيين */
+.indicator .dot {
+  width: 20px;
+  height: 20px;
+  background: #0d294d;
+  border-radius: 50%;
+}
+
+.indicator .left {
+  margin-right: 0px;
+}
+
+.indicator .right {
+  margin-left: 0px;
+}
+
+/* الخط الأحمر النازل */
+.indicator .red-line {
+  width: 3px;
+  height: 70px;
+  background: #e41d1d;
+  position: absolute;
+  top: 80px; /* أسفل الدائرة مباشرة */
+  left: 50%;
+  transform: translateX(-50%);
+}

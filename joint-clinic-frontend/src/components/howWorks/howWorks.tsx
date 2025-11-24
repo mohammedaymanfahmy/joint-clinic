@@ -38,20 +38,20 @@ export default function HowWorks() {
     const ctx = gsap.context(() => {
       tl.current = gsap.timeline({ paused: true });
 
-      // rotate 90deg per step
+      // rotate 90deg per step with ultra-smooth, extended duration
       for (let i = 0; i < steps; i++) {
         tl.current!.to(circleRef.current, {
           rotate: "+=90",
-          duration: 0.6,
-          ease: "power2.inOut",
+          duration: 2.0, // Significantly increased for slower, smoother rotation
+          ease: "power1.out", // Gentler easing for more professional feel
         });
       }
 
       ScrollTrigger.create({
         trigger: wrapperRef.current,
         start: "top top",
-        end: `+=${steps * 80}vh`, // much safer, prevents overflowing
-        scrub: 0.5,
+        end: `+=${steps * 700}vh`, 
+        scrub: 5, 
         pin: true,
         pinSpacing: true,
         animation: tl.current,
@@ -59,8 +59,8 @@ export default function HowWorks() {
           steps > 0
             ? {
                 snapTo: 1 / steps,
-                duration: { min: 0.2, max: 0.6 },
-                ease: "power2.inOut",
+                duration: { min: 500.5, max: 1500.0 }, 
+                ease: "power1.out",
               }
             : undefined,
         onUpdate: (self) => {
@@ -86,8 +86,8 @@ export default function HowWorks() {
 
     gsap.to(tl.current!, {
       progress: targetProgress,
-      duration: 0.6,
-      ease: "power2.inOut",
+      duration: 1.2, // Increased for smoother manual navigation
+      ease: "power1.out",
       onComplete: () => setCurrent(index),
     });
   };
@@ -116,6 +116,9 @@ export default function HowWorks() {
           lg:w-[300px] lg:h-[300px]
           will-change-transform
         "
+        style={{
+          transition: "transform 0.1s ease-out",
+        }}
       >
         <Image
           src="/circle.png"
