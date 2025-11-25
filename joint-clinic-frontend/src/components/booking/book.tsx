@@ -18,11 +18,10 @@ const Book = () => {
       <div
         className="
         w-[95%] max-w-[1700px]
-        bg-white 
+        bg-[#fff] 
         shadow-[0px_25px_60px_rgba(30,85,152,0.15)]
         rounded-[20px] sm:rounded-[32px] md:rounded-[48px]
-        flex flex-col items-center 
-        mt-8 md:mt-12 
+        flex flex-col items-center my-auto
         py-6 md:py-10
       "
       >
@@ -75,7 +74,7 @@ const Book = () => {
 
           {/* STEP 1 */}
           {step === 1 && (
-            <div className="flex flex-col items-center gap-5 w-full">
+            <div className="flex flex-col items-center justify-between h-full gap-5 w-full">
               <h3 className="text-[22px] sm:text-[28px] md:text-[48px] font-bold bg-gradient-to-b from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent">
                 Choose The Branch
               </h3>

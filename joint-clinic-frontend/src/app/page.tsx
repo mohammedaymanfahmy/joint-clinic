@@ -8,7 +8,6 @@ import WhatOurPatientsSay from "@/components/WhatOurPatientsSay/WhatOurPatientsS
 import Footer from "@/components/footer/footer";
 import Book from "@/components/booking/book";
 import WhoWeAre from "@/components/WhoWeAre/WhoWeAre";
-import Typography from "@/components/atoms/Typography";
 import AnimatedSections from "@/components/animated/animated";
 import MeetOurTeam from "@/components/WhoWeAre/MeetOurTeam";
 

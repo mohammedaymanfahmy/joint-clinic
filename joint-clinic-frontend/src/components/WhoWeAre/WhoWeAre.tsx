@@ -66,7 +66,7 @@ function WhoWeAre() {
             scrollTrigger: {
                 trigger: section,
                 start: "top top",
-                end: "+=2000",  // المسافة اللي تمشي فيها الأنيميشن
+                end: "+=20000",  // المسافة اللي تمشي فيها الأنيميشن
                 scrub: true,
                 pin: true,
                 // markers: true,
@@ -107,13 +107,13 @@ function WhoWeAre() {
             });
         // ظهور Members
         master
-            .from(members, { opacity: 0, y: 50 });
+            .from(members, { opacity: 0, y: 50, duration: 1.5 });
         // اخفاء Members
         master
-            .to(members, { opacity: 0, y: -50 });
+            .to(members, { opacity: 0, y: -50, duration: 1.5 });
         // ظهور Choose Us
         master
-            .from(chooseUs, { opacity: 0, y: 50 });
+            .from(chooseUs, { opacity: 0, y: 50, duration: 1.5 });
 
 
     }, []);
@@ -154,7 +154,7 @@ function WhoWeAre() {
                 we make every step of your recovery journey easier.
             </p>
             <section
-                className="team_section absolute bottom-[30px]"
+                className="team_section absolute bottom-[120px]"
                 ref={membersRef}
             >
                 <h1 className="text-[60px] md:text-[100px] font-bold font-['IBM_Plex_Sans'] text-[#fff] text-center">
