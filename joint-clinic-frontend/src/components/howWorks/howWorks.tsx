@@ -103,6 +103,7 @@ export default function HowWorks() {
         pt-16 md:pt-24
         pb-24 md:pb-32
       "
+      id="how-it-works"
       style={{ minHeight: "100vh" }}
     >
       {/* Circle */}

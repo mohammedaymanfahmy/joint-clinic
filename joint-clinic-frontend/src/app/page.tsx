@@ -42,7 +42,7 @@ export default function Home() {
         <HowWorks />
       </section>
      
-      <section className="h-screen flex items-center bg-[#edf7f9] justify-center">
+      <section className="h-screen flex items-center bg-[#edf7f9] justify-center" id="contact-us">
         <Book />
       </section>
       <WhatOurPatientsSay />

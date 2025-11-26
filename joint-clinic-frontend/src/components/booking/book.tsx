@@ -18,6 +18,7 @@ const Book = () => {
       <div
         className="
         w-[95%] max-w-[1700px]
+        h-[80%] md:h-[95%]
         bg-[#fff] 
         shadow-[0px_25px_60px_rgba(30,85,152,0.15)]
         rounded-[20px] sm:rounded-[32px] md:rounded-[48px]
@@ -67,7 +68,7 @@ const Book = () => {
             rounded-[18px] sm:rounded-[22px] md:rounded-[32px]
             p-3 sm:p-5 md:p-10
             flex flex-col justify-between
-            min-h-[400px] sm:min-h-[450px] md:min-h-[500px]
+            min-h-[300px] sm:min-h-[350px] md:min-h-[400px]
             ${step === 3 ? "" : "shadow-[0px_20px_60px_rgba(30,85,152,0.15)]"}
           `}
         >

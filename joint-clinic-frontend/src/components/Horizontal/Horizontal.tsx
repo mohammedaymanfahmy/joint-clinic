@@ -3,6 +3,9 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+const scrollCalculator = (totalWidth: number) => {
+    return totalWidth>768 ? totalWidth - window.innerWidth + 500 : totalWidth - window.innerWidth -300;
+}
 export default function HorizontalScroll() {
     const wrapperRef = useRef(null);
     const trackRef = useRef<HTMLDivElement | null>(null);
@@ -13,8 +16,10 @@ export default function HorizontalScroll() {
         const wrapper = wrapperRef.current;
         const track = trackRef.current;
 
-        const totalWidth = track?.scrollWidth ?? 0;
-        const scrollAmount = totalWidth - window.innerWidth;
+        const totalWidth = track?.scrollWidth?? 0;
+        const scrollAmount = scrollCalculator(totalWidth);
+        console.log("Total Width:", totalWidth);
+        console.log("Scroll Amount:", scrollAmount);
 
         gsap.to(track, {
             x: -scrollAmount,
@@ -26,13 +31,14 @@ export default function HorizontalScroll() {
                 end: `+=${totalWidth}`, // scroll length equals total width of horizontal items
                 scrub: true,
                 pin: true, // freeze section → convert scroll to horizontal
+                pinSpacing: true,
             }
         });
 
         return () => ScrollTrigger.getAll().forEach(st => st.kill());
     }, []);
 
-    let cards = [
+    const cards = [
         {
             title: "Holiday Hours Update",
             desc: "Our clinic will be closed on Friday, Sept 25, for maintenance. Online services remain available"
@@ -80,7 +86,7 @@ export default function HorizontalScroll() {
             {/* Horizontal scrollable content */}
             <div
                 ref={trackRef}
-                className="flex h-full top-[26%] md:top-[8%] md:left-[20%] w-max relative z-10 mt-30 items-start pl-60"
+                className="flex h-full top-[26%] md:top-[8%] md:left-[20%] w-max relative z-10 mt-30 items-start pl-100"
             >
                 {cards.map((card, index) => (
                     <div
