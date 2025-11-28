@@ -12,10 +12,13 @@ export const UserRepoMongo: UserRepoPort = {
   },
 
   async save(user: Partial<User>): Promise<User | null> {
-    const userModel = await UserModel.findById(user._id);
+    console.log("Saving user to MongoDB...", user._doc._id);
+    const userModel = await UserModel.findById(user._doc._id);
+    console.log("Saving user to MongoDB...", userModel);
     if (!userModel) return null;
     Object.assign(userModel, user);
     await userModel.save();
+    console.log("User saved in MongoDB:", userModel);
     return userModel as any as User;
   },
 
@@ -26,6 +29,8 @@ export const UserRepoMongo: UserRepoPort = {
   },
 
   async updateUserStatus(userId: string, statusUpdate: Partial<User['userStatus']>): Promise<void> {
-    await UserModel.updateOne({ _id: userId }, { $set: { userStatus: { ...statusUpdate } } });
+    console.log("Updating user status in MongoDB...", statusUpdate);
+    const updatedUser = await UserModel.findOneAndUpdate({ _id: userId }, { $set: { userStatus: { ...statusUpdate } } }, { new: true });
+    console.log("User status updated in MongoDB", updatedUser);
   }
 }

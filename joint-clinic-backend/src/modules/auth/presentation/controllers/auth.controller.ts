@@ -29,7 +29,7 @@ export async function createPartialUser(req: Request, res: Response) {
   const uc = new CreatePartialUser(resolve(USER_AUTH_REPO));
   const user = await uc.exec(fullName, gender, birthdate, contact);
   console.log("\nuser created", user);
-  res.json({ ok: true, message: 'Partial User Created.', user: {id: user._id, fullName: user.fullName, gender: user.gender, birthdate: user.birthdate, email: user.email, phone: user.phone, userStatus: user.userStatus } });
+  res.json({ ok: true, message: 'Partial User Created.', user: { id: user._id, fullName: user.fullName, gender: user.gender, birthdate: user.birthdate, email: user.email, phone: user.phone, userStatus: user.userStatus } });
 }
 
 // create full user
@@ -57,27 +57,39 @@ export async function createFullUser(req: Request, res: Response) {
 
   const uc = new CreateFullUser(resolve(USER_AUTH_REPO));
   try {
-    const lookup = userId ? { id: userId } : { contact };
+    const lookup = { id: userId };
     // Build mergedProps only with provided optional fields to persist
     const mergedProps: any = {};
     if (fullName !== undefined) mergedProps.fullName = fullName;
     if (gender !== undefined) mergedProps.gender = gender;
     if (birthdate !== undefined) mergedProps.birthdate = typeof birthdate === 'string' ? new Date(birthdate) : birthdate;
-    ["email","phone","identifier","identifierType","nationality","address","city","maritalStatus","speakingLanguages","guardianInformation","patientCategory"].forEach(k => {
+    ["email", "phone", "identifier", "identifierType", "nationality", "address", "city", "maritalStatus", "speakingLanguages", "guardianInformation", "patientCategory"].forEach(k => {
       if ((req.body as any)[k] !== undefined) mergedProps[k] = (req.body as any)[k];
     });
+    console.log("\nCreating full user with lookup:", lookup, "and mergedProps:", mergedProps);
 
     const user = await uc.exec(lookup as any, mergedProps);
-    res.json({ ok: true, message: 'Full User Created/Completed.', user: { id: user._id, fullName: user.fullName, gender: user.gender, birthdate: user.birthdate, email: user.email, phone: user.phone, userStatus: user.userStatus } });
+    console.log("\nfull user created", user);
+
+    res.json({ ok: true, message: 'Full User Created.', user: { id: user._id, fullName: user.fullName, gender: user.gender, birthdate: user.birthdate, email: user.email, phone: user.phone, userStatus: user.userStatus } });
   } catch (err: any) {
+    console.error("Error in createFullUser controller:", err.message);
     return res.status(400).json({ ok: false, message: err?.message ?? 'Failed to create full user.' });
   }
 }
 
 // request otp
 export async function requestOtp(req: Request, res: Response) {
+  console.log("????----------------- requestOtp called -----------------")
   const { subjectRef, subjectType, contact } = RequestOtpSchema.parse(req.body);
+  console.log("\n---------- requestOtp contact:", contact, "---------------");
+  try {
+
+  } catch (error) {
+    return res.status(400).json({ ok: false, message: (error as any)?.message ?? 'OTP request failed.' });
+  }
   const uc = new RequestOtp(resolve(OTP_REPO), resolve(SMS_REPO), resolve(MAIL_REPO));
+  console.log("\n---------- requestOtp uc created ---------------");
   const result = await uc.exec(subjectType, subjectRef, contact as string);
   res.json({ ok: true, otpToken: result.otpToken });
 }

@@ -1,16 +1,17 @@
 import { UserRepoPort } from "../ports/UserRepoPort";
 import { User } from "../../domain/User";
 
-type FindBy = { id?: string; contact?: string };
+type FindBy = { id?: string };
 
 export class CreateFullUser {
 	constructor(private userRepo: UserRepoPort) {}
 	async exec(lookup: FindBy, fullProfileProps?: Partial<User>): Promise<User> {
-		const { id, contact } = lookup;
+		const { id } = lookup;
+		console.log("CreateFullUser exec called with lookup:", lookup, "and fullProfileProps:", fullProfileProps);
+		if (!id) throw new Error("Either id or contact is required to complete a user profile.");
 
-		if (!id && !contact) throw new Error("Either id or contact is required to complete a user profile.");
-
-		const user = id ? await this.userRepo.findById(id) : await this.userRepo.findByEmailOrPhone(contact!);
+		const user = await this.userRepo.findById(id!);
+		console.log("\n--------------User found in create full USER -------------------------:", user, "\n\n\n---------------");
 		if (!user) throw new Error("User not found.");
 
 		const status = user.userStatus || ({} as any);
@@ -33,8 +34,17 @@ export class CreateFullUser {
 		};
 
 		// Persist the merged user using save (repo handles persistence details)
-		const saved = await this.userRepo.save(merged as Partial<User>);
-		if (!saved) throw new Error('Failed to persist full user.');
+		let saved;
+		console.log("Persisting full user with merged properties:", merged);
+		try {
+			saved = await this.userRepo.save(merged as Partial<User>);
+		} catch (error) {
+			console.error("Error saving full user:", error?.message);
+			throw new Error("Failed to persist full user.");
+		}
+		if (!saved) {
+			throw new Error('User is not found');
+		} 
 		return saved as User;
 	}
 }

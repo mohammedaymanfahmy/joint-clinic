@@ -20,7 +20,7 @@ const UserSchema = new Schema(
     city: { type: String, required: false },
     userStatus: {
       partialProfileCompleted: { type: Boolean, default: false },
-      otpVerified: { type: Boolean, default: false },
+      registerOtpVerified: { type: Boolean, default: false },
       fullProfileCompleted: { type: Boolean, default: false }
     },
 

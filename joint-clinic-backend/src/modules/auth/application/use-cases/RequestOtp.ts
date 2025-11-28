@@ -18,13 +18,16 @@ export class RequestOtp {
   ) {}
 
   async exec(subjectType: SubjectType, subjectRef: string, contact: string) {
+    console.log("----------- da5l exec -----------------")
     const otp = await this.createOtp(subjectType, subjectRef);
     const otpToken = this.signJwt({ subjectType, subjectRef });
-
+    console.log("-  ------------ GEHHH HNNNNAAAAA OTP TOKEN - -- - -- --")
     const contactType = detectContactType(contact);
     try {
       await this.sendOtp(contactType, subjectType, contact, subjectRef, otp.code);
-    } catch (error) {
+    console.log("-------- SSSEEEEEND --------")
+    } catch (error) {``
+      console.log("-------- ERROR ------------")
       return { err: (error as Error).message };
     }
 
