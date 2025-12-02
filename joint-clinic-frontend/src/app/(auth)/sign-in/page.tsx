@@ -32,7 +32,7 @@ const Page = () => {
       className="w-[100%] min-h-screen relative bg-cover relative bg-center flex items-center justify-start overflow-y-auto"
       style={{ backgroundImage: "url('./loginbg.png')" }}
     >
-      <div className="w-full h-full flex items-center justify-start pl-[6%]">
+      <div className="w-full h-full flex items-center justify-start">
         {showHello && (
           <HelloCard
             onGo={() => {
@@ -46,9 +46,9 @@ const Page = () => {
         !showHello && (
           <div className="w-[100vw] relative right-[50%] translate-x-[50%] min-h-screen flex items-center justify-center">
 
-            <CorneredBoxes type="glass" className="w-[80vw] min-h-[100vh] absolute right-[50%] top-[5%] translate-x-[50%] mb-[10%]">
+            <CorneredBoxes type="glass" className="w-[95vw] md:w-[80vw] min-h-[100vh] absolute right-[50%] top-[5%] translate-x-[50%] mb-[10%]">
 
-              <Logo fill="#112a4d" className="w-[150px] h-[150px] absolute top-[10px] right-[40px]" />
+              <Logo fill="#112a4d" className="w-[100px] md:w-[150px] h-[100px] md:h-[150px] absolute top-[10px] right-[40px]" />
 
               <div className='my-[10%] flex flex-col justify-center items-center'>
 
@@ -66,26 +66,26 @@ const Page = () => {
                       variants={pageAnim}
                       className="page1 flex flex-col items-center justify-center"
                     >
-                      <h2 className="text-[42px] font-bold bg-gradient-to-b from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent text-center">
+                      <h2 className="md:text-[42px] text-[25px] font-bold bg-gradient-to-b from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent text-center">
                         Looks like you’re new here!
                       </h2>
 
-                      <p className="text-center bg-gradient-to-b from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent mt-3 mb-8 font-medium text-[20px] leading-relaxed">
+                      <p className="text-center bg-gradient-to-b from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent mt-3 mb-8 font-medium md:text-[20px] text-[15px] w-[80%] leading-relaxed">
                         Let’s get you started. Please enter your phone number or email.
                       </p>
 
-                      <div className="inputs flex flex-row gap-[30px]">
+                      <div className="inputs flex md:flex-row flex-col justify-center items-center md:gap-[30px] gap-[10px]">
                         <input
                           type="text"
                           placeholder="Full Name"
-                          className="w-[450px] h-[80px] text-[24px] px-5 rounded-full border border-[#0D294D] bg-transparent
+                          className="md:w-[450px] w-full h-[80px] md:text-[24px] text-[18px] px-5 rounded-full border border-[#0D294D] bg-transparent
                                  text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2
                                  focus:ring-[#1E5598]/30 transition"
                         />
 
                         <input
                           type="date"
-                          className="w-[380px] text-[24px] text-center h-[80px] px-5 rounded-full border border-[#0D294D]
+                          className="md:w-[380px] bg-[#f5f] w-full md:text-[24px] text-[18px] text-center h-[80px] px-5 rounded-full border border-[#0D294D]
                                  bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] outline-none
                                  focus:ring-2 focus:ring-[#1E5598]/30 transition"
                         />
@@ -114,25 +114,25 @@ const Page = () => {
                       variants={pageAnim}
                       className="page2 flex flex-col justify-center items-center"
                     >
-                      <h2 className="text-[42px] font-bold bg-gradient-to-b from-[#0D294D] to-[#1E5598]
+                      <h2 className="md:text-[42px] text-[25px] font-bold bg-gradient-to-b from-[#0D294D] to-[#1E5598]
                                  bg-clip-text text-transparent text-center">
                         Perfect,
                       </h2>
 
                       <p className="text-center bg-gradient-to-b from-[#0D294D] to-[#1E5598]
-                                bg-clip-text text-transparent mt-[14px] mb-[50px] font-medium text-[20px] leading-relaxed">
+                                bg-clip-text text-transparent mt-[14px] mb-[50px] font-medium md:text-[20px] text-[14px] w-[90vw] leading-relaxed">
                         now we’ll send you a code to verify your phone/email. Please enter the code when it arrives
                       </p>
 
                       <input
                         type="text"
                         placeholder="Verification Code"
-                        className="w-[460px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent
+                        className="md:w-[460px] w-[80%] h-[80px] px-5 md:text-[24px] text-[18px] rounded-full border border-[#0D294D] bg-transparent
                                text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2
                                focus:ring-[#1E5598]/30 transition"
                       />
 
-                      <a href="#" className="text-[24px] text-[#1E5598] font-medium underline mt-2">Resend code</a>
+                      <a href="#" className="md:text-[24px] text-[20px] text-[#1E5598] font-medium underline mt-2">Resend code</a>
                     </motion.div>
                   )}
 
@@ -145,24 +145,24 @@ const Page = () => {
                       variants={pageAnim}
                       className="page3 flex flex-col items-center justify-center"
                     >
-                      <h2 className="text-[42px] font-bold bg-gradient-to-b from-[#0D294D] to-[#1E5598]
+                      <h2 className="md:text-[42px] text-[25px] font-bold bg-gradient-to-b from-[#0D294D] to-[#1E5598]
                                 bg-clip-text text-transparent text-center">
                         Personal Information,
                       </h2>
 
-                      <p className="text-center bg-gradient-to-b mt-[14px] mb-[50px] from-[#0D294D] to-[#1E5598]
-                                bg-clip-text text-transparent font-medium text-[20px] leading-relaxed">
+                      <p className="md:text-[20px] text-[16px] text-center bg-gradient-to-b mt-[14px] mb-[50px] from-[#0D294D] to-[#1E5598]
+                                bg-clip-text text-transparent font-medium w-[80%] leading-relaxed">
                         We need more details about you.
                       </p>
 
-                      <form action="" className='flex flex-row gap-[30px] flex-wrap justify-center items-center'>
+                      <form action="" className='flex md:flex-row flex-col gap-[30px] flex-wrap justify-center items-center'>
 
-                        <input type="email" placeholder="Email Address" className="w-[580px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
+                        <input type="email" placeholder="Email Address" className="md:w-[580px] w-[90vw] h-[80px] px-5 md:text-[24px] text-[18px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
 
-                        <input type="text" placeholder="NID or Iqama ID" className="w-[350px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
+                        <input type="text" placeholder="NID or Iqama ID" className="md:w-[350px] w-[90vw] h-[80px] px-5 md:text-[24px] text-[18px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
 
                         <div className="relative">
-                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] right-[50px]" />
+                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] md:right-[50px] right-[30px]" />
                           <CustomDropdown
                             items={[
                               "Saudi Arabia",
@@ -172,13 +172,13 @@ const Page = () => {
                               "Sudan",
                               "Kuwait"
                             ]}
-                            width="w-[305px]"
+                            width="md:w-[305px] w-[90vw]"
                             text="Nationality"
                           />
                         </div>
 
                         <div className="relative">
-                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] right-[50px]" />
+                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] md:right-[50px] right-[30px]" />
                           <CustomDropdown
                             items={[
                               "Cairo",
@@ -188,15 +188,15 @@ const Page = () => {
                               "Port Said",
                               "Zagazig"
                             ]}
-                            width="w-[275px]"
+                            width="md:w-[275px] w-[90vw]"
                             text="City"
                           />
                         </div>
 
-                        <input type="text" placeholder="Address" className="w-[1000px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
+                        <input type="text" placeholder="Address" className="md:w-[1000px] w-[90vw] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
 
                         <div className="relative">
-                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] right-[170px]" />
+                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] md:right-[170px] md:right-[50px] right-[30px]" />
                           <CustomDropdown
                             items={[
                               "Saudi Arabia",
@@ -206,13 +206,13 @@ const Page = () => {
                               "Sudan",
                               "Kuwait"
                             ]}
-                            width="w-[560px]"
+                            width="md:w-[560px] w-[90vw]"
                             text="Identifier type"
                           />
                         </div>
 
                         <div className="relative">
-                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] right-[50px]" />
+                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] md:right-[50px] right-[30px]" />
                           <CustomDropdown
                             items={[
                               "Single",
@@ -220,39 +220,39 @@ const Page = () => {
                               "Divorced",
                               "Widowed"
                             ]}
-                            width="w-[310px]"
+                            width="md:w-[310px] w-[90vw]"
                             text="Marital Status"
                           />
                         </div>
 
                         <div className="relative">
-                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] right-[50px]" />
+                          <FontAwesomeIcon icon={faCaretDown} size="xl" className="absolute top-[50%] translate-y-[-50%] md:right-[50px] right-[30px]" />
                           <CustomDropdown
                             items={[
                               "English",
                               "Arabic",
                               "Other"
                             ]}
-                            width="w-[375px]"
+                            width="md:w-[375px] w-[90vw]"
                             text="Speaking Language"
                           />
                         </div>
                       </form>
 
                       <div className="part2 flex flex-col items-center justify-center">
-                        <h2 className="text-[42px] font-bold mt-0 bg-gradient-to-b mt-[60px] from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent tracking-wide text-center">Guardian Information,</h2>
-                        <p className="text-center w-[60%]  mt-[14px] mb-[50px] bg-gradient-to-b from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent tracking-wide text-center my-[10px] font-medium text-[20px] leading-relaxed">
+                        <h2 className="md:text-[42px] text-[24px] font-bold mt-0 bg-gradient-to-b mt-[60px] from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent tracking-wide text-center">Guardian Information,</h2>
+                        <p className="text-center w-[60%]  mt-[14px] mb-[50px] bg-gradient-to-b from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent tracking-wide text-center my-[10px] font-medium md:text-[20px] w-[90vw] text-[16px] leading-relaxed">
                           The guardian will be taking decision on patient’ behalf in  case that the patient is a minor or
                           can’t make decisions due to medical conditions.
                         </p>
                         <form action="" className='flex flex-row gap-[30px] flex-wrap justify-center items-center'>
-                          <input type="text" placeholder="Guardian’s Full Name" className="w-[750px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
-                          <input type="text" placeholder="Guardian’s Phone Number" className="w-[540px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
-                          <input type="text" placeholder="Guardian’s NID or Iqama ID" className="w-[570px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
-                          <input type="email" placeholder="Guardian’s Email Address" className="w-[720px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
-                          <input type="text" placeholder="Blood Group" className="w-[440px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
-                          <input type="text" placeholder="Patient Category" className="w-[450px] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
-                          <div className="relative">
+                          <input type="text" placeholder="Guardian’s Full Name" className="md:w-[750px] w-[90vw] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
+                          <input type="text" placeholder="Guardian’s Phone Number" className="md:w-[540px] w-[90vw] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
+                          <input type="text" placeholder="Guardian’s NID or Iqama ID" className="md:w-[570px] w-[90vw] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
+                          <input type="email" placeholder="Guardian’s Email Address" className="md:w-[720px] w-[90vw] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
+                          <input type="text" placeholder="Blood Group" className="md:w-[440px] w-[90vw] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
+                          <input type="text" placeholder="Patient Category" className="md:w-[450px] w-[90vw] h-[80px] px-5 text-[24px] rounded-full border border-[#0D294D] bg-transparent text-[#0D294D] placeholder:text-[#7b8a99] text-center outline-none focus:ring-2 focus:ring-[#1E5598]/30 transition" />
+                          <div className="relative">  
                             <input
                               id="upload"
                               type="file"
@@ -275,7 +275,7 @@ const Page = () => {
                 </AnimatePresence>
 
                 {/* BUTTONS */}
-                <div className="btns mt-[40px] flex flex-row gap-[30px]">
+                <div className="btns mt-[40px] flex md:flex-row flex-col md:gap-[30px]">
 
                   {step > 1 && (
                     <button

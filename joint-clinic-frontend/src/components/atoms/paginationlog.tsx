@@ -10,12 +10,12 @@ interface PaginationProps {
 
 export default function PaginationDots({ total, activeIndex, className = "" }: PaginationProps) {
   return (
-    <div className={`flex gap-[120px] items-center ${className}`}>
+    <div className={`flex md:gap-[120px] gap-[40px] items-center ${className}`}>
       {Array.from({ length: total }).map((_, index) => (
         <div
           key={index}
           className={`
-            w-[30px] h-[30px] rounded-full transition-all duration-300
+            md:w-[30px] md:h-[30px] w-[20px] h-[20px] rounded-full transition-all duration-300
             pointer-events-none             /* 🔥 منع الضغط نهائياً */
             ${activeIndex === index
               ? "bg-[#0a1c32] scale-110"

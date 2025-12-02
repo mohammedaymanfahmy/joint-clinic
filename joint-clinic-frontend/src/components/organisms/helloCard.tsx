@@ -4,35 +4,113 @@ import Logo from "../icons/Logo";
 
 export default function HelloCard({ onGo }: { onGo: () => void }) {
   return (
-    <div>
-      <div className="relative">
-        <Logo fill="#112a4d" className="w-[150px] h-[150px] absolute top-[20px] right-[40px]" />
-      </div>
+    <div className="w-full flex md:justify-start md:ml-[4%] sm:justify-center sm:items-center px-4">
+      <div className="relative w-full max-w-[800px]">
 
-      <div className="bg-[#fff] rounded-[55px] shadow-lg w-[860px] h-[750px] p-8 flex flex-col items-center justify-center gap-6">
-
-        <h2 className="text-[120px] font-bold bg-gradient-to-b from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent tracking-wide my-0 text-center">
-          HELLO!
-        </h2>
-
-        <p className="text-center bg-gradient-to-b from-[#0D294D] to-[#1E5598] bg-clip-text text-transparent tracking-wide font-medium text-[20px] leading-relaxed">
-          Let’s get you started. Please enter your phone number or email.
-        </p>
-
-        <input
-          type="text"
-          placeholder="Email Address Or Phone number"
-          className="w-[67%] mt-2 px-4 py-3 border rounded-[48px] outline-none text-gray-800 text-[20px] border-[#000] text-center bg-gradient-to-b from-[#0D294D] to-[#1E5598]
-         bg-clip-text text-transparent tracking-wide focus:border-[#1E5598] focus:ring-2 focus:ring-[#1E5598]/40 transition-all duration-300"
+        {/* Logo */}
+        <Logo
+          fill="#112a4d"
+          className="
+            absolute 
+            top-[10px] right-[10px] 
+            w-[80px] h-[80px] 
+            md:w-[150px] md:h-[150px] 
+          "
         />
 
-        <button
-          onClick={onGo}
-          className="w-[220px] h-[60px] cursor-pointer py-3 bg-[#ea392f] text-white rounded-full font-semibold mt-4 hover:bg-[#d23229] transition-all duration-300"
+        {/* Card */}
+        <div
+          className="
+            bg-[#fff] rounded-[35px] shadow-lg 
+            w-full 
+            h-[70vh]
+            md:rounded-[55px] 
+            md:w-[860px] md:h-[750px] 
+            p-6 md:p-8 
+            flex flex-col items-center justify-center 
+            gap-5 md:gap-6
+          "
         >
-          Go
-        </button>
 
+          {/* Title */}
+          <h2
+            className="
+              text-[40px] 
+              md:text-[120px] 
+              font-bold 
+              bg-gradient-to-b from-[#0D294D] to-[#1E5598] 
+              bg-clip-text 
+              text-transparent 
+              tracking-wide 
+              my-0 
+              text-center
+            "
+          >
+            HELLO!
+          </h2>
+
+          {/* Subtitle */}
+          <p
+            className="
+              text-center 
+              bg-gradient-to-b from-[#0D294D] to-[#1E5598] 
+              bg-clip-text text-transparent 
+              tracking-wide 
+              font-medium 
+              text-[16px] leading-relaxed 
+              md:text-[20px]
+              px-3
+            "
+          >
+            Let’s get you started. Please enter your phone number or email.
+          </p>
+
+          {/* Input */}
+          <input
+            type="text"
+            placeholder="Email Address Or Phone number"
+            className="
+              w-[90%] 
+              md:w-[67%] 
+              mt-2 
+              px-4 py-3 
+              border rounded-[40px] 
+              outline-none 
+              text-gray-800 
+              text-[15px] 
+              md:text-[20px]
+              border-[#000] 
+              text-center 
+              bg-gradient-to-b from-[#0D294D] to-[#1E5598]
+              bg-clip-text text-transparent 
+              tracking-wide 
+              focus:border-[#1E5598] 
+              focus:ring-2 focus:ring-[#1E5598]/40 
+              transition-all duration-300
+            "
+          />
+
+          {/* Button */}
+          <button
+            onClick={onGo}
+            className="
+              w-[180px] h-[50px] 
+              md:w-[220px] md:h-[60px] 
+              cursor-pointer 
+              py-3 
+              bg-[#ea392f] 
+              text-white 
+              rounded-full 
+              font-semibold 
+              mt-4 
+              hover:bg-[#d23229] 
+              transition-all duration-300
+            "
+          >
+            Go
+          </button>
+
+        </div>
       </div>
     </div>
   );
