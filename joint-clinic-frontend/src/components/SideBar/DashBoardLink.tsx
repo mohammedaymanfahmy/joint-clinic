@@ -56,15 +56,14 @@ const DashBoardLink = ({ linkHref, title, Icon, expanded = true, mobileIconOnly 
                 )}
             >
                 <Typography
+                    text={title}
                     variant={Icon ? "bodyBold" : "bodyRegular"}
                     className="font-medium whitespace-nowrap"
                     style={{
                         color: colorState,
                         ...(Icon && { fontSize: "clamp(16px, 2vw, 22px)" }),
                     }}
-                >
-                    {title}
-                </Typography>
+                />
             </div>
         </Link>
     );
