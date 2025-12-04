@@ -7,9 +7,9 @@ import { color } from "@/lib/constants/colors";
 import { useState } from "react";
 import { mockDashboardData as data } from "@/lib/data/dashboardData";
 import TaskList from "../../../../components/atoms/tasklist/tasklist";
-import Button from "@/components/atoms/button";
 import SearchInput from "@/components/atoms/searchInput";
 import SessionCard from "@/components/molecules/sessionCard";
+import Button from "@/components/atoms/Button";
 
 const Page = () => {
     const [activate, setActivate] = useState("Sholders");
