@@ -4,7 +4,7 @@ import ProgressBar from "@/components/atoms/ProgressBar";
 import SummaryItem from "@/components/molecules/SummaryItem";
 import { color } from "@/lib/constants/colors";
 import { mockDashboardData as data } from "@/lib/data/dashboardData";
-import TaskList from "./tasklist";
+import TaskList from "../../../../components/atoms/tasklist/tasklist";
 
 const Page = () => {
     const tasks = [

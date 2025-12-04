@@ -5,13 +5,18 @@ interface TaskItem {
   category?: string;
   due?: string;
   dueColor?: string;
+  categoryColor?: string;   // 🆕 لون الكاتيجوري
+  textSize?: string;        // 🆕 حجم النص للطرفين
   isAdd?: boolean;
+  type?: string;
+  count?: number;
+  major?: string;
 }
 
 interface TaskListProps {
   taskItems: TaskItem[];
 }
-
+ // if type is "roles" then show and props will use is count and major
 export default function TaskList({ taskItems }: TaskListProps) {
   return (
     <div className="w-full bg-transparent">
@@ -25,16 +30,14 @@ export default function TaskList({ taskItems }: TaskListProps) {
         >
           {/* Left: Checkbox + Title */}
           <div className="flex items-center gap-3">
-            {/* Circle Checkbox */}
             <div
               className={`
                 w-4 h-4 rounded-full border border-blue-500
               `}
             ></div>
 
-            {/* Title */}
             <span
-              className={`text-blue-900 font-medium ${
+              className={`text-blue-900 font-medium text-[20px] ${
                 task.isAdd ? "text-blue-700" : ""
               }`}
             >
@@ -45,11 +48,23 @@ export default function TaskList({ taskItems }: TaskListProps) {
           {/* Right Section (Category + Due) */}
           {!task.isAdd && (
             <div className="flex items-center gap-8 text-sm w-[25%]">
-              <div className="taskcategory flex items-center justify-center bg-red-500 gap-8 text-sm w-[50%]">
-                <span className="text-blue-900 font-medium text-[24px] text-center">{task.category}</span>
+
+              <div className="relative flex items-center justify-center gap-8 text-sm w-[50%]">
+                <span className="taskcategoryleft"></span>
+
+                {/* 🆕 categoryColor & textSize بديفولت */}
+                <span className={`${task.categoryColor ?? "text-blue-900"} font-medium ${task.textSize ?? "text-[22px]"} text-center`}>
+                  {task.category}
+                </span>
+
+                <span className="taskcategoryright"></span>
               </div>
+
               <div className="flex items-center justify-center gap-8 text-sm w-[50%]">
-                <span className={`${task.dueColor} font-medium text-[24px] text-center`}>{task.due}</span>
+                {/* 🆕 dueColor & textSize */}
+                <span className={`${task.dueColor ?? "text-[#F6A500]"} font-medium ${task.textSize ?? "text-[22px]"} text-center`}>
+                  {task.due}
+                </span>
               </div>
             </div>
           )}
