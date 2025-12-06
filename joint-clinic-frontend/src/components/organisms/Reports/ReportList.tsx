@@ -4,13 +4,14 @@ import ReportItem from "@/components/molecules/ReportItem";
 
 interface Report {
     id: string;
-    reportName: string;
-    status: "Ready" | "In progress" | "Pending";
+    reportName: string;  
+    status: "Ready" | "In progress" | "Pending" | "Uploaded" | "Waiting";
     dateInfo: string;
 }
 
 interface ReportListProps {
     reports: Report[];
+    type: "staff" | "patient";
 }
 
 const ReportList: React.FC<ReportListProps> = ({ reports }) => {

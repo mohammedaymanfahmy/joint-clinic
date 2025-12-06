@@ -5,7 +5,7 @@ import ActionButton from "@/components/atoms/ActionButton";
 
 interface ReportItemProps {
     reportName: string;
-    status: "Ready" | "In progress" | "Pending";
+    status: "Ready" | "In progress" | "Pending" | "Uploaded" | "Waiting";
     dateInfo: string;
     onView?: () => void;
     onDownload?: () => void;
@@ -49,7 +49,7 @@ const ReportItem: React.FC<ReportItemProps> = ({
                     text="Download"
                     variant={status === "Ready" ? "solid" : "solid"} // Can be customized for disabled state
                     onClick={onDownload}
-                    className={`w-[120px] !rounded-full ${status !== "Ready" ? "!bg-gray-400 !cursor-not-allowed" : ""}`}
+                    className={`w-[120px] !rounded-full ${status !== "Ready" && status !== "Uploaded" ? "!bg-gray-400 !cursor-not-allowed" : ""}`}
                 />
             </div>
         </div>

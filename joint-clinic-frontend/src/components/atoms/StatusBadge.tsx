@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "./Typography";
 
 interface StatusBadgeProps {
-    status: "Confirmed" | "Pending" | "Cancelled" | "Ready" | "In progress";
+    status: "Confirmed" | "Pending" | "Cancelled" | "Ready" | "In progress" | "Uploaded" | "Waiting";
 }
 
 const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
@@ -12,6 +12,8 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
         Cancelled: "text-[#ea392f]", // Red
         Ready: "text-[#167c4f]",     // Green (Same as Confirmed)
         "In progress": "text-[#FDB515]", // Orange/Yellow (Same as Pending)
+        Uploaded: "text-[#167c4f]",  // Green (Same as Ready)
+        Waiting: "text-[#FDB515]",   // Orange/Yellow (Same as Pending)
     };
 
     return (
